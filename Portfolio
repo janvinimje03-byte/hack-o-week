@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <meta charset="UTF-8">
+</head>
+
+<body style="margin:0; font-family:Arial; background-color:#eef2ff;">
+
+   
+    <div style="background-color:#1e3a8a; padding:15px;">
+        <a href="#home" style="color:white; margin-right:15px;">Home</a>
+        <a href="#about" style="color:white; margin-right:15px;">About</a>
+        <a href="#projects" style="color:white; margin-right:15px;">Projects</a>
+        <a href="#contact" style="color:white;">Contact</a>
+    </div>
+
+    
+    <div id="home" style="padding:40px; text-align:center; background-color:#e0e7ff;">
+        <h1 style="color:#1e3a8a;">Hello, I'm Kia</h1>
+        <p style="color:#334155;">Student | Frontend Developer | Learner</p>
+
+        <a href="#projects">
+            <button style="padding:10px 20px; background-color:#2563eb; color:white; border:none;">
+                View My Projects
+            </button>
+        </a>
+    </div>
+
+    
+    <div id="about" style="background-color:white; padding:40px;">
+        <h2 style="color:#1e3a8a;">About Me</h2>
+        <p>
+            I am a CSE student learning frontend development.
+            I enjoy building simple and clean websites.
+        </p>
+
+        <a href="#skills">
+            <button style="background-color:#22c55e; color:white; border:none; padding:8px 16px;">
+                View My Skills
+            </button>
+        </a>
+    </div>
+
+   
+    <div id="skills" style="padding:40px; background-color:#f1f5f9;">
+        <h2 style="color:#1e3a8a;">My Skills</h2>
+        <ul>
+            <li>HTML – Website structure</li>
+            <li>CSS – Styling pages</li>
+            <li>JavaScript – Basics</li>
+            <li>Python – Basics</li>
+        </ul>
+    </div>
+
+    
+    <div id="projects" style="padding:40px;">
+        <h2 style="color:#1e3a8a;">Projects</h2>
+
+        <div style="background-color:white; padding:20px; margin-bottom:15px; border-left:5px solid #2563eb;">
+            <h3>Research Paper</h3>
+            <p>Learned how to write research papers and review articles.</p>
+            <a href="#research">
+                <button style="background-color:#2563eb; color:white; border:none; padding:6px 12px;">
+                    More Info
+                </button>
+            </a>
+        </div>
+
+        <div style="background-color:white; padding:20px; margin-bottom:15px; border-left:5px solid #22c55e;">
+            <h3>Arduino Uno</h3>
+            <p>Hands-on experience with electronics and sensors.</p>
+            <a href="#arduino">
+                <button style="background-color:#22c55e; color:white; border:none; padding:6px 12px;">
+                    More Info
+                </button>
+            </a>
+        </div>
+
+        <div style="background-color:white; padding:20px; border-left:5px solid #f97316;">
+            <h3>Website Development</h3>
+            <p>Built a website using HTML and CSS.</p>
+            <a href="#web">
+                <button style="background-color:#f97316; color:white; border:none; padding:6px 12px;">
+                    More Info
+                </button>
+            </a>
+        </div>
+    </div>
+
+    
+    <div id="research" style="background-color:#e0e7ff; padding:40px;">
+        <h2>Research Paper</h2>
+        <p>Learned paper structure, abstracts, and review writing.</p>
+    </div>
+
+    <div id="arduino" style="padding:40px;">
+        <h2>Arduino Uno</h2>
+        <p>Worked with LEDs, sensors, and Arduino programming.</p>
+    </div>
+
+    <div id="web" style="background-color:#f1f5f9; padding:40px;">
+        <h2>Website Development</h2>
+        <p>Developed a simple webpage during Hack-o-week.</p>
+    </div>
+
+    
+    <div id="contact" style="background-color:#1e293b; color:white; padding:40px; text-align:center;">
+        <h2>Contact Me</h2>
+        <p>Email: kia123@example.com</p>
+
+        <a href="mailto:kia123@example.com">
+            <button style="background-color:#2563eb; color:white; border:none; padding:8px 16px;">
+                Email Me
+            </button>
+        </a>
+
+        <a href="https://github.com" target="_blank">
+            <button style="background-color:#22c55e; color:white; border:none; padding:8px 16px;">
+                GitHub
+            </button>
+        </a>
+
+        <a href="https://linkedin.com" target="_blank">
+            <button style="background-color:#f97316; color:white; border:none; padding:8px 16px;">
+                LinkedIn
+            </button>
+        </a>
+    </div>
+
+    
+    <div style="background-color:black; color:gray; text-align:center; padding:10px;">
+        © 2026 Kia
+    </div>
+
+</body>
+</html>
