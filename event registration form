@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fest Registration</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{
+--card:#1b2235;
+--input:#020617;
+--btn:linear-gradient(90deg,#4facfe,#9b5cff);
+--accent:#7c3aed;
+--text:#e0e7ff;
+--glow:0 0 20px rgba(124,58,237,0.5);
+}
+
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#0f172a,#1e1b4b);
+color:var(--text);
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px;
+}
+
+
+
+.hero{
+background:linear-gradient(135deg,#1e293b,#312e81);
+border-radius:25px;
+padding:20px;
+display:flex;
+align-items:center;
+gap:20px;
+box-shadow:var(--glow);
+}
+
+.logo{height:90px;}
+
+
+
+.category-cards{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+margin:60px 0;
+}
+
+.category-card{
+width:300px;
+background:linear-gradient(135deg,#1e293b,#312e81);
+border-radius:25px;
+cursor:pointer;
+}
+
+.category-card:hover{
+transform:translateY(-8px) scale(1.05);
+box-shadow:0 0 30px rgba(79,172,254,0.8);
+}
+
+.category-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.category-card .info{
+padding:20px;
+text-align:center;
+}
+
+
+
+.event-benefits{
+border:2px solid #7c3aed;
+border-radius:20px;
+padding:30px;
+text-align:center;
+margin:40px auto 60px;
+max-width:850px;
+background:rgba(30,41,59,0.6);
+box-shadow:0 0 25px rgba(124,58,237,0.6);
+}
+
+.event-benefits h2{
+color:#a5b4fc;
+margin-bottom:15px;
+}
+
+.event-benefits p{
+color:#c7d2fe;
+line-height:1.7;
+font-size:16px;
+}
+
+
+
+#programInfo{
+display:none;
+text-align:center;
+margin-bottom:40px;
+}
+
+#programInfo h2{color:#a5b4fc;}
+
+#programInfo p{
+max-width:700px;
+margin:auto;
+font-size:16px;
+line-height:1.6;
+color:#c7d2fe;
+}
+
+
+
+.form-card{
+max-width:480px;
+margin:auto;
+background:linear-gradient(135deg,#1e293b,#312e81);
+border-radius:25px;
+display:none;
+box-shadow:0 0 35px rgba(124,58,237,0.7);
+overflow:hidden;
+}
+
+.banner{
+height:100px;
+background:linear-gradient(135deg,#4facfe,#9b5cff);
+}
+
+.content{padding:30px;}
+
+.input-box{
+position:relative;
+margin-bottom:15px;
+}
+
+.input-box i{
+position:absolute;
+top:50%;
+left:12px;
+transform:translateY(-50%);
+color:#94a3b8;
+}
+
+input,select{
+width:100%;
+padding:12px 12px 12px 40px;
+border:none;
+border-radius:14px;
+background:var(--input);
+color:var(--text);
+outline:none;
+}
+
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:30px;
+background:var(--btn);
+font-weight:bold;
+cursor:pointer;
+color:#020617;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+<div class="hero">
+<img src="logo.png" class="logo">
+<h1>SYMBIOSIS INSTITUTE OF TECHNOLOGY</h1>
+</div>
+
+
+<div class="category-cards">
+
+<div class="category-card" onclick="showForm('technical')">
+<img src="technical.jpg">
+<div class="info">
+<h3>💻 Technical Events</h3>
+<p>Hackathon, Coding, Workshops</p>
+</div>
+</div>
+
+<div class="category-card" onclick="showForm('cultural')">
+<img src="cultural.jpg">
+<div class="info">
+<h3>🎭 Cultural Events</h3>
+<p>Dance, Singing, Drama</p>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="event-benefits">
+<h2>🌟 Fest Event Highlights</h2>
+
+<p>
+The fest includes both Technical Events like hackathons, coding contests, workshops, and tech quizzes that improve problem-solving and innovation skills. It also features Cultural Events such as dance, singing, drama, and art competitions that help students express creativity and build confidence. These events provide learning, fun, and overall personality development.
+</p>
+
+<p>
+These events also allow students to meet new people, discover talents,  
+and gain experiences helpful for future careers.
+</p>
+</div>
+
+
+
+<div id="programInfo">
+<h2 id="infoTitle"></h2>
+<p id="infoText"></p>
+</div>
+
+
+
+<div class="form-card" id="formCard">
+<div class="banner"></div>
+
+<div class="content">
+<h2 id="formTitle">Register</h2>
+
+<form onsubmit="showSuccess(event)">
+
+<div class="input-box">
+<i class="fa fa-user"></i>
+<input type="text" placeholder="Full Name" required>
+</div>
+
+<div class="input-box">
+<i class="fa fa-envelope"></i>
+<input type="email" placeholder="Email Address" required>
+</div>
+
+<div class="input-box">
+<i class="fa fa-phone"></i>
+<input type="tel" placeholder="Phone Number" required>
+</div>
+
+<div class="input-box">
+<i class="fa fa-graduation-cap"></i>
+<select required>
+<option>Select Semester</option>
+<option>1st Semester</option>
+<option>2nd Semester</option>
+<option>3rd Semester</option>
+<option>4th Semester</option>
+<option>5th Semester</option>
+<option>6th Semester</option>
+<option>7th Semester</option>
+<option>8th Semester</option>
+</select>
+</div>
+
+<div class="input-box">
+<i class="fa fa-calendar"></i>
+<select id="eventSelect" required></select>
+</div>
+
+<button>Register ✨</button>
+
+</form>
+</div>
+</div>
+
+</div>
+
+<script>
+function showForm(type){
+
+let form=document.getElementById("formCard");
+let title=document.getElementById("formTitle");
+let select=document.getElementById("eventSelect");
+
+let infoBox=document.getElementById("programInfo");
+let infoTitle=document.getElementById("infoTitle");
+let infoText=document.getElementById("infoText");
+
+infoBox.style.display="block";
+form.style.display="block";
+
+select.innerHTML="<option>Select Event</option>";
+
+if(type==="technical"){
+title.innerText="💻 Technical Event Registration";
+infoTitle.innerText="Technical Programs";
+infoText.innerHTML="Technical programs include hackathons, coding contests, workshops and quizzes.";
+
+["Hackathon","Coding Contest","Workshop","Tech Quiz"].forEach(e=>{
+select.innerHTML+=`<option>${e}</option>`;
+});
+}
+else{
+title.innerText="🎭 Cultural Event Registration";
+infoTitle.innerText="Cultural Programs";
+infoText.innerHTML="Cultural programs include dance, singing, drama and art competitions.";
+
+["Dance","Singing","Drama","Art & Painting"].forEach(e=>{
+select.innerHTML+=`<option>${e}</option>`;
+});
+}
+
+infoBox.scrollIntoView({behavior:"smooth"});
+}
+
+function showSuccess(e){
+e.preventDefault();
+alert("🎉 Registration completed successfully!");
+}
+</script>
+
+</body>
+</html>
