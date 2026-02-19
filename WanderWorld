@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WanderWorld - Travel Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1);
+            color: white;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 70px 20px;
+            background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+            background-size: cover;
+            background-position: center;
+        }
+
+        header h1 {
+           
+    font-size: 48px;
+    margin: 0;
+    background-color: #ffe4ec;   /* Very soft baby pink */
+    color: #a1005a;
+    display: inline-block;
+    padding: 15px 40px;
+    border-radius: 20px;
+
+        }
+
+        header p {
+            margin-top: 15px;
+            font-style: italic;
+            font-size: 18px;
+        }
+
+        /* NAV */
+        nav {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            margin: 0 25px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* SECTION */
+        .section {
+            width: 80%;
+            margin: 60px auto;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 32px;
+        }
+
+        /* BLOG CARDS (VERTICAL) */
+        .card {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+            font-size: 26px;
+        }
+
+        .card-content p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* FORM */
+        .form-section {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            background: linear-gradient(to right, #ff6a00, #ee0979);
+            color: white;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>WanderWorld</h1>
+    <p>"Travel far enough, you meet yourself."</p>
+</header>
+
+<nav>
+    <a href="#blogs">Blogs</a>
+    <a href="#submit">Submit</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="section" id="blogs">
+    <h2>Latest Travel Experiences</h2>
+
+    <!-- Blog 1 -->
+    <div class="card">
+        <img src="https://lp-cms-production.imgix.net/2021-01/GettyRF_450207051.jpg?auto=compress&format=auto&fit=crop&q=50&w=1200&h=800">
+        <div class="card-content">
+            <h3>Himalayan Escape</h3>
+            <p><strong>Author:</strong> Riya Sharma</p>
+            <p>
+                My journey to the Himalayas was a breathtaking experience filled with snow-covered peaks,
+                peaceful monasteries, and crisp mountain air. Trekking through the valleys allowed me to
+                connect deeply with nature. The sunrise over the mountains painted the sky in shades of
+                orange and pink, creating a magical atmosphere. The simplicity of life in the villages
+                reminded me how beautiful and grounding travel can truly be.
+            </p>
+        </div>
+    </div>
+
+    <!-- Blog 2 -->
+    <div class="card">
+        <img src="https://res.klook.com/image/upload/fl_lossy.progressive,q_60/Mobile/City/swox6wjsl5ndvkv5jvum.jpg">
+        <div class="card-content">
+            <h3>Paris Dreams</h3>
+            <p><strong>Author:</strong> Neha Kapoor</p>
+            <p>
+                Paris welcomed me with charming streets, artistic museums, and cozy cafés.
+                Walking along the Seine River during sunset felt like stepping into a romantic movie.
+                The Eiffel Tower sparkling at night was truly unforgettable.
+                From tasting authentic croissants to exploring world-famous art at the Louvre,
+                every moment felt rich with culture and beauty.
+            </p>
+        </div>
+    </div>
+
+    <!-- Blog 3 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+        <div class="card-content">
+            <h3>Goa Vibes</h3>
+            <p><strong>Author:</strong> Aman Verma</p>
+            <p>
+                Goa is the perfect blend of relaxation and excitement. The golden beaches,
+                rhythmic waves, and vibrant nightlife create an unforgettable atmosphere.
+                Watching the sunset at Baga Beach while enjoying local seafood was a highlight.
+                The colorful markets and Portuguese-style architecture added charm to every corner.
+                Goa truly captures the spirit of freedom and joy.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<div class="section" id="submit">
+    <h2>Share Your Journey</h2>
+
+    <div class="form-section">
+        <form>
+            <label>Full Name</label>
+            <input type="text">
+
+            <label>Email</label>
+            <input type="email">
+
+            <label>Destination</label>
+            <input type="text">
+
+            <label>Upload Image</label>
+            <input type="file">
+
+            <label>Your Story</label>
+            <textarea rows="5"></textarea>
+
+            <button type="submit">Submit Blog</button>
+        </form>
+    </div>
+</div>
+
+<footer id="contact">
+    <p>📧 wanderworld@gmail.com | 📞 +91 9876543210</p>
+    <p>© 2026 WanderWorld</p>
+</footer>
+
+</body>
+</html>
