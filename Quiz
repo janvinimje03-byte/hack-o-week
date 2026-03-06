@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Solar System Quiz</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:radial-gradient(circle at top,#08142c,#000);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+.container{
+width:750px;
+background:rgba(0,0,0,0.85);
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 40px #3ea6ff;
+z-index:2;
+}
+
+h1{
+text-align:center;
+color:#ffd700;
+}
+
+#progressBar{
+height:12px;
+background:#333;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:20px;
+}
+
+#progress{
+height:100%;
+width:0%;
+background:#00d4ff;
+transition:0.3s;
+}
+
+#question{
+font-size:20px;
+margin-bottom:10px;
+}
+
+#planetImage{
+width:150px;
+display:block;
+margin:auto;
+margin-bottom:15px;
+border-radius:10px;
+}
+
+.option{
+display:block;
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+background:#162447;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+.option:hover{
+background:#1f4068;
+transform:scale(1.03);
+}
+
+#nextBtn{
+background:#ffd700;
+border:none;
+padding:12px;
+margin-top:15px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+#nextBtn:hover{
+background:#ffcc00;
+}
+
+#result{
+text-align:center;
+font-size:24px;
+}
+
+#leaderboard{
+margin-top:20px;
+background:#0f3460;
+padding:10px;
+border-radius:10px;
+}
+
+.star{
+position:fixed;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+.planet{
+position:fixed;
+border-radius:50%;
+opacity:0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌌 Solar System Quiz</h1>
+
+<div id="progressBar">
+<div id="progress"></div>
+</div>
+
+<div id="quiz">
+
+<div id="question"></div>
+
+<img id="planetImage">
+
+<div id="options"></div>
+
+<button id="nextBtn">Next</button>
+
+</div>
+
+<div id="result" style="display:none;"></div>
+
+<div id="leaderboard">
+<h3>🏆 Local Leaderboard</h3>
+<ol id="scores"></ol>
+</div>
+
+</div>
+
+<audio id="correctSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b6c66.mp3"></audio>
+<audio id="wrongSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c9a3c7e14.mp3"></audio>
+
+<script>
+
+const GOOGLE_SCRIPT_URL="PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
+
+const quizData=[
+
+{
+question:"Which planet is known as the Red Planet?",
+image:"https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg",
+options:["Mars","Venus","Mercury","Earth"],
+answer:"Mars"
+},
+
+{
+question:"Which is the largest planet in the Solar System?",
+image:"https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg",
+options:["Earth","Saturn","Jupiter","Neptune"],
+answer:"Jupiter"
+},
+
+{
+question:"Which planet has the famous rings?",
+image:"https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg",
+options:["Saturn","Mars","Uranus","Mercury"],
+answer:"Saturn"
+},
+
+{
+question:"Which planet is closest to the Sun?",
+image:"https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg",
+options:["Mercury","Venus","Earth","Mars"],
+answer:"Mercury"
+},
+
+{
+question:"Which planet is called Earth's twin?",
+image:"https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg",
+options:["Venus","Mars","Jupiter","Saturn"],
+answer:"Venus"
+}
+
+];
+
+let current=0;
+let score=0;
+let selected=null;
+
+const questionEl=document.getElementById("question");
+const optionsEl=document.getElementById("options");
+const imageEl=document.getElementById("planetImage");
+const nextBtn=document.getElementById("nextBtn");
+const progress=document.getElementById("progress");
+
+const correctSound=document.getElementById("correctSound");
+const wrongSound=document.getElementById("wrongSound");
+
+function loadQuestion(){
+
+selected=null;
+nextBtn.disabled=true;
+
+let q=quizData[current];
+
+questionEl.textContent=(current+1)+". "+q.question;
+imageEl.src=q.image;
+
+optionsEl.innerHTML="";
+
+q.options.forEach(option=>{
+
+let btn=document.createElement("button");
+btn.textContent=option;
+btn.classList.add("option");
+
+btn.onclick=()=>{
+
+selected=option;
+nextBtn.disabled=false;
+
+document.querySelectorAll(".option").forEach(b=>b.style.background="#162447");
+btn.style.background="#00a8ff";
+
+};
+
+optionsEl.appendChild(btn);
+
+});
+
+updateProgress();
+
+}
+
+function updateProgress(){
+
+let percent=(current/quizData.length)*100;
+progress.style.width=percent+"%";
+
+}
+
+nextBtn.onclick=()=>{
+
+if(selected===quizData[current].answer){
+score++;
+correctSound.play();
+}else{
+wrongSound.play();
+}
+
+current++;
+
+if(current<quizData.length){
+loadQuestion();
+}else{
+finishQuiz();
+}
+
+};
+
+function finishQuiz(){
+
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+
+let name=prompt("Enter your name:");
+
+sendToGoogleSheets(name,score);
+saveLocalScore(name,score);
+
+document.getElementById("result").innerHTML=
+"🚀 Quiz Finished!<br><br>Your Score: "+score+" / "+quizData.length+
+"<br><br><button onclick='location.reload()'>Play Again</button>";
+
+loadScores();
+
+}
+
+function sendToGoogleSheets(name,score){
+
+fetch(GOOGLE_SCRIPT_URL,{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+player:name,
+score:score
+})
+});
+
+}
+
+function saveLocalScore(name,score){
+
+let scores=JSON.parse(localStorage.getItem("spaceScores"))||[];
+
+scores.push({name,score});
+
+scores.sort((a,b)=>b.score-a.score);
+
+scores=scores.slice(0,5);
+
+localStorage.setItem("spaceScores",JSON.stringify(scores));
+
+}
+
+function loadScores(){
+
+let scores=JSON.parse(localStorage.getItem("spaceScores"))||[];
+
+let list=document.getElementById("scores");
+list.innerHTML="";
+
+scores.forEach(s=>{
+
+let li=document.createElement("li");
+li.textContent=s.name+" - "+s.score;
+list.appendChild(li);
+
+});
+
+}
+
+loadQuestion();
+loadScores();
+
+/* stars */
+
+for(let i=0;i<120;i++){
+
+let star=document.createElement("div");
+star.classList.add("star");
+
+star.style.top=Math.random()*100+"%";
+star.style.left=Math.random()*100+"%";
+star.style.animationDelay=Math.random()*2+"s";
+
+document.body.appendChild(star);
+
+}
+
+/* floating planets */
+
+function createPlanet(size,color,top,left){
+
+let p=document.createElement("div");
+
+p.classList.add("planet");
+
+p.style.width=size+"px";
+p.style.height=size+"px";
+p.style.background=color;
+
+p.style.top=top;
+p.style.left=left;
+
+document.body.appendChild(p);
+
+}
+
+createPlanet(80,"#ff5733","10%","5%");
+createPlanet(60,"#d4af37","80%","90%");
+createPlanet(50,"#6ec6ff","20%","85%");
+createPlanet(70,"#c0c0c0","75%","10%");
+</script>
+
+</body>
+</html>
